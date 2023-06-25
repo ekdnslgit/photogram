@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-org.springframework.ide.eclipse.boot.wizard.PopularityTracker.devtools=1
-org.springframework.ide.eclipse.boot.wizard.PopularityTracker.web=1
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.devtools=2
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.web=2
 org.springframework.ide.eclipse.boot.wizard.PreferredSelections.artifactId=controller-demo
 org.springframework.ide.eclipse.boot.wizard.PreferredSelections.bootVersion=2.7.13
 org.springframework.ide.eclipse.boot.wizard.PreferredSelections.description=Demo project for Spring Boot
