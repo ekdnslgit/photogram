@@ -1,0 +1,29 @@
+package com.cos.controllerdemo.web;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cos.controllerdemo.domain.User;
+
+@RestController
+public class HttpResponseJsonController {
+
+		@GetMapping("/resp/json")
+		public String respJason() {
+			return "{\"username:\"cos\"}";
+		}
+		
+		@GetMapping("/resp/json/object")
+		public User respJasonObject() {
+			User user = new User();
+			user.setUsername("홍길동");
+			return user;
+		}
+		
+		@GetMapping("/resp/json/javaobject")
+		public User respJasonObject() {
+			User user = new User();
+			user.setUsername("홍길동");
+			return user;
+		}
+}
