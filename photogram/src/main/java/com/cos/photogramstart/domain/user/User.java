@@ -27,8 +27,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
 	private int id;
 	
-	@Column(unique = true) // 제약조건 부여, 중복 가입 방지
-	private String username;
+	@Column(length = 20, unique = true) // 제약조건 부여, 이름 최대 글자 수 설정 / 유저네임 중복 가입 방지(스키마(테이블) 변경)
+	private String username;                     // 어플리케이션.yml에 JPA를 create로 한번 바꿔줘야함
 	private String password;
 	private String email;
 	private String name;
