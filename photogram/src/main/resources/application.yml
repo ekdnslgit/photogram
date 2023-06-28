@@ -21,7 +21,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update  // DATA를 INSERT하고 서버를 다시 실행해도 그 데이터가 남아있다.(CREAT로 되어있으면 사라진다.)
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
