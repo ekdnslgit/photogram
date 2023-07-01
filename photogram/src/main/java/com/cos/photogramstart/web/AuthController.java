@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.service.AuthService;
@@ -47,23 +48,24 @@ public class AuthController {
 	
 	// 회원가입 버튼 -> /auth/signup -> return"auth/signin"
 	@PostMapping("/auth/signup")
-	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // key=value (x-www-form-urlencoded)
-		
+	public @ResponseBody String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // key=value (x-www-form-urlencoded)
+	// @ResponseBody가 리턴타입 앞에 붙어있으면 return"auth/signin"; 처럼 데이터를 응답한다.
+	
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>(); 
 			
 			for(FieldError error : bindingResult.getFieldErrors()) {
 				errorMap.put(error.getField(), error.getDefaultMessage());
-				System.out.println(error.getDefaultMessage());
 			}
+			return "오류남";
+		} else {
+			// log.info(signupDto.toString());
+			// User <- SignupDto를 넣는다.
+			User user = signupDto.toEntity();
+			User userEntity = authService.회원가입(user);
+			System.out.println(userEntity);
+			// log.info(user.toString());
+			return"auth/signin";
 		}
-		
-		// log.info(signupDto.toString());
-		// User <- SignupDto를 넣는다.
-		User user = signupDto.toEntity();
-		User userEntity = authService.회원가입(user);
-		System.out.println(userEntity);
-		// log.info(user.toString());
-		return"auth/signin";
 	}
 }
