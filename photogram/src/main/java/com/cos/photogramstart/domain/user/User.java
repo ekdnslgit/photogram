@@ -29,14 +29,16 @@ public class User {
 	
 	@Column(length = 20, unique = true) // 제약조건 부여, 이름 최대 글자 수 설정 / 유저네임 중복 가입 방지(스키마(테이블) 변경)
 	private String username;                     // 어플리케이션.yml에 JPA를 create로 한번 바꿔줘야함
+	@Column(nullable=false)
 	private String password;
-	private String email;
+	@Column(nullable=false)
 	private String name;
 	private String website;
 	private String bio;
+	@Column(nullable=false)
+	private String email;
 	private String phone;
 	private String gender;
-	
 	private String profileImageUrl;
 	private String role; // 권한
 	
