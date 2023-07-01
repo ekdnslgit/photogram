@@ -51,6 +51,7 @@ public class AuthController {
 	@PostMapping("/auth/signup")
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // key=value (x-www-form-urlencoded)
 	// @ResponseBody가 리턴타입 앞에 붙어있으면 return"auth/signin"; 처럼 데이터(문자그대로)를 응답한다.
+	// 사인업 데이터 유효성 검사중 하나라도 실패하면 바인딩 리절트에 담긴다.
 	
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>(); 
