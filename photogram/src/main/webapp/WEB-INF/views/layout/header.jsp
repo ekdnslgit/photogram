@@ -2,9 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<sec : authorize access = "isAuthenticated()">
+	<sec:authentication property = "principal" var="principal"/>
+</sec : authorize>
+
 <!DOCTYPE html>
 <html lang="en">
-
+<!--${principal.user}  < JSP file의 모든 페이지에서 이렇게 적으면 principal details에 접근이 된다,-->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
