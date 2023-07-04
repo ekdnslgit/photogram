@@ -13,10 +13,17 @@ function update(userId, event) {
 		contentType : "application/x-www-form-urlencoded; charset=utf-8",
 		dataType : "json"
 		
-	}).done(res=> { // "json"을 파싱해서 받는다. res는 자바스크립트 오브젝트가 된다.
+	}).done(res=> { // "json"을 파싱해서 받는다. res는 자바스크립트 오브젝트가 된다. / httpstatus 상태코드 200번대면 done이 뜬다.
 		console.log("성공", res);
-		//location.href = `/user/${userId}`;
-	}).fail(error=> {
-		console.log("실패", error);
+		location.href = `/user/${userId}`;
+	}).fail(error=> { // httpstatus 상태코드 200번때가 아닐 때 뜬다.
+	console.log(error);
+		if(error.data == null) {
+			alert(error.responseJSON.message);
+		} else {
+		alert(JSON.stringify(error.responseJSON.data)); // stringify는 괄호 안의 자바스크립트 오브젝트를 제이슨 문자열로 변환하는 기능을 수행
+		}
 	});
 }
+
+// 리스폰스 엔티티를 쓰는 이유는 에이젝스 통신을 할 때는 리스폰스 엔티티를 써줘야 http 상태코드를 전달할 수 있다.(done / fail)

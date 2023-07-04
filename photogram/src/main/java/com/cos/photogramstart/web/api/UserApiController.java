@@ -36,7 +36,7 @@ public class UserApiController {
 			BindingResult bindingResult, // 위에서 문제가 생기면 아래에 담는다. 꼭 @Vaild가 적혀있는 다음 파라미터에 적어야함
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors()) { // 뒤쪽에서 부적절한 접근을 막는 수단.
 			Map<String, String> errorMap = new HashMap<>(); 
 			
 			for(FieldError error : bindingResult.getFieldErrors()) {

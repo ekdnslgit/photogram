@@ -47,7 +47,6 @@ public class User {
 	@PrePersist // DB에 Data가 insert되기 직전에 걸어줌, 위의 필드만 넣어주면 자동으로 createdate
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
-		
 	}
 
 }

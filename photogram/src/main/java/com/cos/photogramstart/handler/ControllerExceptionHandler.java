@@ -2,6 +2,8 @@ package com.cos.photogramstart.handler;
 
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +32,10 @@ public class ControllerExceptionHandler {
 	}
 	
 	@ExceptionHandler(CustomValidationApiException.class) // 런타임 익셉션이 발동하는 모든 익셉션을 아래 함수가 감지한다.
-	public CMRespDto<?> validationApiException(CustomValidationApiException e) { // 제네릭에서 뭘 리턴할지 모르겠으면 <T>자리에 <?>
-		return new  CMRespDto<>(-1,e.getMessage(), e.getErrorMap());
-		// 오브젝트(데이터) 응답
+	public ResponseEntity<?> validationApiException(CustomValidationApiException e) { 
+		// 제네릭에서 뭘 리턴할지 모르겠으면 <T>자리에 <?>
+		// CMRespDto<?> : http 상태 코드를 던진다.
+		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST); // body와 상태코드를 순서대로 넣는다
 	}
 	
 }

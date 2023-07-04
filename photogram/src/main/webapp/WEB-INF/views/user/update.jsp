@@ -22,12 +22,12 @@
 			<!--프로필셋팅 아이디영역end-->
 
 			<!--프로필 수정-->
-			<form id="profileUpdate"" onsubmit = "update(${principal.user.id}), event">
+			<form id="profileUpdate" onsubmit = "update(${principal.user.id}, event)">
 				<div class="content-item__02">
 					<div class="item__title">이름</div>
 					<div class="item__input">
 						<input type="text" name="name" placeholder="이름"
-							value="${principal.user.name}"  required="required"/>
+							value="${principal.user.name}"  required="required"/>  <!--앞단에서 네임 공백 등 막는 기능을 수행한다.-->
 					</div>
 				</div>
 				<div class="content-item__03">
