@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cos.photogramstart.handler.ex.CustomApiException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.util.Script;
@@ -32,10 +33,17 @@ public class ControllerExceptionHandler {
 	}
 	
 	@ExceptionHandler(CustomValidationApiException.class) // 런타임 익셉션이 발동하는 모든 익셉션을 아래 함수가 감지한다.
-	public ResponseEntity<?> validationApiException(CustomValidationApiException e) { 
+	public ResponseEntity<?> apiException(CustomValidationApiException e) { 
 		// 제네릭에서 뭘 리턴할지 모르겠으면 <T>자리에 <?>
 		// CMRespDto<?> : http 상태 코드를 던진다.
-		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST); // body와 상태코드를 순서대로 넣는다
+		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST); // body와 상태코드를 순서대로 넣는다
+	}
+	
+	@ExceptionHandler(CustomApiException.class) // 런타임 익셉션이 발동하는 모든 익셉션을 아래 함수가 감지한다.
+	public ResponseEntity<?> apiException(CustomApiException e) { 
+		// 제네릭에서 뭘 리턴할지 모르겠으면 <T>자리에 <?>
+		// CMRespDto<?> : http 상태 코드를 던진다.
+		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST); // body와 상태코드를 순서대로 넣는다
 	}
 	
 }
